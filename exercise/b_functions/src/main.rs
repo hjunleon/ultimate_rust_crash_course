@@ -11,16 +11,16 @@ fn main() {
     // - Complete the code to shadow the old `number` variable with a new `number` variable
     //   of the correct type.
 
-    // ... = convert_to_integer(number); // uncomment this line and finish shadowing `number`
+    let number = convert_to_integer(number); // uncomment this line and finish shadowing `number`
     inspect_integer(number); // don't change this line!
 
     // 2. Uncomment and run the code below. Fix the scope problem so that the code compiles and runs
     // producing the answer 42.
 
-    // {
-    //     let answer = 42;
-    // }
-    // println!("The answer is {}", answer);
+    
+    let answer = 42;
+    
+    println!("The answer is {}", answer);
 
     // 3. Create a function named `add` that adds two i32 values together and returns the result.
     // Then uncomment the code below. You should get the output "4 + 42 = 46"
@@ -28,8 +28,12 @@ fn main() {
     // Note: If you fixed the scope problem from #2 by moving the `println` up into the nested
     // scope, then you will have to change the code above again so that `answer` is in this scope.
 
-    // let sum = ...  // call your `add` function and pass it `number` and `answer` as arguments.
-    // println!("{} + {} = {}", number, answer, sum);
+    fn add(a: i32, b: i32) -> i32{
+        a+b
+    }
+
+    let sum = add(number, answer);  // call your `add` function and pass it `number` and `answer` as arguments.
+    println!("{} + {} = {}", number, answer, sum);
 
     // 4. You can declare a variable without initializing it, but the compiler must be able to
     // ensure that it will always be initialized before you can use it.
@@ -43,12 +47,20 @@ fn main() {
     // } else {
     //     println!("The answer is clearly wrong.");
     //     // set countdown to some value here
+    //     countdown = 0;
     // }
-    // println!("The countdown begins at {}", countdown);
+
+    let countdown: i32 = if answer < 100 {
+        10
+    } else {
+        0
+    };
+
+    println!("The countdown begins at {}", countdown)
 }
 
 fn inspect_integer(x: i32) {
-    println!("The integer is {}", x);
+    println!("The integer is {}", x)
 }
 
 // Challenge: A "tail expression" is when the last expression in a block does not end with a
@@ -60,5 +72,5 @@ fn inspect_integer(x: i32) {
 fn convert_to_integer(num: f64) -> i32 {
     // For more information on using `as` to cast between numeric types, see:
     // https://doc.rust-lang.org/reference/expressions/operator-expr.html#numeric-cast
-    return num.round() as i32;
+    num.round() as i32
 }

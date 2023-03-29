@@ -11,9 +11,14 @@
 //
 // Hint: the name of the library is defined in Cargo.toml
 
-const FIRST: i32 = 1;
-const SECOND: i32 = 2;
-const THIRD: i32 = 3;
+
+// use animal::FIRST;
+// use animal::SECOND;
+// use animal::THIRD;
+
+// use animal::sound;
+
+use animal::prelude::*;
 
 // 2. Create a library module named `sound` and move the animal functions into it.
 //
@@ -25,27 +30,16 @@ const THIRD: i32 = 3;
 // - Change the function calls to access the functions through the `sound` module.
 //   For example: sound::dog()
 
-fn dog() {
-    println!("Dog goes WOOF!");
-}
-
-fn cat() {
-    println!("Cat goes MEOW!");
-}
-
-fn fox() {
-    println!("What does the fox say???");
-}
 
 fn main() {
     print!("Listening to animal {}: ", FIRST);
-    dog();
+    sound::tame::dog();
 
     print!("Listening to animal {}: ", SECOND);
-    cat();
+    sound::tame::cat();
 
     print!("Listening to animal {}: ", THIRD);
-    fox();
+    sound::wild::fox();
 }
 
 // Challenge 1
@@ -55,6 +49,8 @@ fn main() {
 //
 // Hint: You will need to create a subdirectory for the top-level `sound` modules' submodules to
 // be placed in.
+
+// Note to self, i can either make modules via directories or nesting in the mod implementation itself
 
 // Challenge 2
 //
