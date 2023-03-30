@@ -8,7 +8,9 @@ trait Colorful {
 
 // 1. Define a struct `Hat` with one field `size` that is a `u8`.
 
-// struct Hat ...
+struct Hat {
+    size: u8,
+}
 
 // 2a. Hats are colorful! Implement the `Colorful` trait which returns:
 //
@@ -16,17 +18,33 @@ trait Colorful {
 // - Green - if the size is 6 or 7
 // - Blue - for any other size
 
-// impl Colorful for Hat ...
+impl Hat {
+    fn new(size: u8) -> Self {
+        Self{size}
+    }
+}
+
+impl Colorful for Hat {
+    fn color(self: &Self) -> String {
+        if self.size <=5{
+            "Red"
+        } else if self.size == 6 || self.size == 7{
+            "Green"
+        } else {
+            "Blue"
+        }.to_string()
+    }
+}
 
 fn main() {
     // 2b. Uncomment and run the code below. The hats should be red, green, and blue--in that order.
 
-    // let small_hat = Hat { size: 2 };
-    // let medium_hat = Hat { size: 7 };
-    // let large_hat = Hat { size: 100 };
-    // println!("The small hat is {}", small_hat.color());
-    // println!("The medium hat is {}", medium.color());
-    // println!("The large hat is {}", large_hat.color());
+    let small_hat = Hat::new(2);
+    let medium_hat = Hat::new(7);
+    let large_hat = Hat::new(100);
+    println!("The small hat is {}", small_hat.color());
+    println!("The medium hat is {}", medium_hat.color());
+    println!("The large hat is {}", large_hat.color());
 
     // 3. Implement the Colorful trait for the type i32. Then uncomment and run the code below.
     //
@@ -35,9 +53,19 @@ fn main() {
     //
     // *You may use the `is_even` function from the bottom of this file if you like.
 
-    // for i in range(0..=3) {
-    //     println!("{} is {}", i, i.color());
-    // }
+    impl Colorful for i32 {
+        fn color(self: &Self) -> String {
+            if is_even(*self){
+                "Orange"
+            } else {
+                "Purple"
+            }.to_string()
+        }
+    }
+
+    for i in 0..=3 {
+        println!("{} is {}", i, i.color());
+    }
 
     // 4. Implement an associated function named `new` for the `Hat` struct which takes
     // an u8 as an argument and returns a Hat of that size.
@@ -50,8 +78,12 @@ fn main() {
     // Colorful trait and prints out the color in some message (for example: "The color I see in
     // your future is ..."). Then uncomment and run the code below.
 
-    // fortune(small_hat);
-    // fortune(2);
+    fn fortune<T: Colorful>(item: T){
+        println!("The color I see in your future is {}", item.color())
+    }
+
+    fortune(small_hat);
+    fortune(2);
 
     // Challenge 2: Create a trait `
 }

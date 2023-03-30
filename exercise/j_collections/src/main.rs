@@ -5,7 +5,7 @@ fn main() {
     // removed.
     //
     // `vec` is a macro that lets you define a Vec literal.
-    let poem = vec![
+    let mut poem = vec![
         "I do not like them in a box",
         "I do not like them with a fox",
         "I do not like them in a house",
@@ -20,14 +20,17 @@ fn main() {
     //
     // Hint: `poem` needs to be mutable for this to work.
     let next_line = "I do not like them Sam I am";
+    poem.push(next_line);
 
     let mut word_map: HashMap<&str, u32> = HashMap::new();
-    for word in poem.split_whitespace() {
-        if word_map.contains_key(word) {
-            let count = word_map.get_mut(word).unwrap();
-            *count += 1;
-        } else {
-            word_map.insert(word, 1);
+    for sentence in poem {
+        for word in sentence.split_whitespace() {
+            if word_map.contains_key(word) {
+                let count = word_map.get_mut(word).unwrap();
+                *count += 1;
+            } else {
+                word_map.insert(word, 1);
+            }
         }
     }
 

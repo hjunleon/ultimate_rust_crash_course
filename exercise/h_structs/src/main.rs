@@ -1,6 +1,8 @@
 // Silence some warnings so they don't distract from the exercise.
 #![allow(dead_code, unused_mut)]
 
+use h_structs::Polygon;
+
 // 1. Create a struct named `Polygon` with the fields and their types listed below. Then build the
 // program with `cargo build` to ensure you don't have any syntax errors.
 //
@@ -8,7 +10,6 @@
 // - sides - u32
 // - visible - bool
 
-// struct Polygon ...
 
 // 2. Create an implementation block for the `Polygon` struct.
 //
@@ -24,7 +25,7 @@
 //
 // Then build the program with `cargo build` to ensure you don't have any syntax errors.
 
-// impl Polygon ...
+
 
 fn main() {
     // 3. Create a new, mutable polygon variable by calling the Polygon's `new` associated function.
@@ -34,11 +35,11 @@ fn main() {
     //
     // Then uncomment and run the code below to see a message about the polygon.
 
-    // let mut polygon = ...
-    // println!(
-    //     "I see a {}-sided polygon named {}!",
-    //     polygon.sides, polygon.name
-    // );
+    let mut polygon = Polygon::new("George".to_string());
+    println!(
+        "I see a {}-sided polygon named {}!",
+        polygon.sides(), polygon.name
+    );
 
     // 4. In the `impl Polygon` block above:
     //
@@ -53,11 +54,11 @@ fn main() {
     //
     // Then uncomment and run the code below.
 
-    // println!(
-    //     "The polygon named {} is a {}",
-    //     polygon.name,
-    //     polygon.shape()
-    // );
+    println!(
+        "The polygon named {} is a {}",
+        polygon.name,
+        polygon.shape()
+    );
 
     // 5. In the `impl Polygon` block above:
     //
@@ -68,14 +69,14 @@ fn main() {
     //
     // Then uncomment and run the code below.
 
-    // for _ in 0..3 {
-    //     polygon.increment_sides();
-    //     println!(
-    //         "The polygon now has {} sides and is the shape of a {}",
-    //         polygon.sides,
-    //         polygon.shape()
-    //     );
-    // }
+    for _ in 0..3 {
+        polygon.increment_sides();
+        println!(
+            "The polygon now has {} sides and is the shape of a {}",
+            polygon.sides(),
+            polygon.shape()
+        );
+    }
 
     // Challenge: Move the `Polygon` struct and impl blocks to lib.rs and put `pub` in front of the
     // fields, methods, and associated function that need to be public. Then add `use` statements to
